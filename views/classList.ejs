@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title>日新查询服务</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <section class="col-xs-12 classList-section">
+        <div class="col-xs-2 classList-back">
+            <a href="javascript:window.history.go(-1);">
+                <img class="img-responsive" src="/images/classList-1.png" alt="" />
+            </a>
+        </div>
+        <div class="col-xs-12 classList-info">
+            <div class="col-xs-7 classList-user">
+                <h2>刘小波</h2>
+                <span>2015211001000622</span>
+            </div>
+            <div class="col-xs-2 col-xs-offset-3 classList-login">
+                <a href="/"><img class="img-responsive" src="/images/classList-2.png" alt="" /></a>
+            </div>
+            <div class="col-xs-12 classList-date">
+                <div class="col-xs-6">
+                    <span>日期</span>
+                    <span class="span-date">2017/09/13</span>
+                </div>
+                <div class="col-xs-5 col-xs-offset-1">
+                    <span>课程数目</span>
+                    <span class="span-date">4节</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 classList-day">
+            <span class="col-xs-3">今天</span>
+            <span class="col-xs-3">明天</span>
+            <span class="col-xs-3">星期三</span>
+            <span class="col-xs-3">星期四</span>
+            <span class="cube active0">小波</span>
+        </div>
+        <div class="col-xs-12 classList-table">
+            <table class="table">
+                <thead>
+                    <th>课节</th>
+                    <th>课程</th>
+                    <th>教师</th>
+                    <th>教室</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1-2</td>
+                        <td>高等数学(下)</td>
+                        <td>付智慧</td>
+                        <td>31#202</td>
+                    </tr>
+                    <tr>
+                        <td>3-4</td>
+                        <td>马克思主义原理</td>
+                        <td>张文剑</td>
+                        <td>31#401</td>
+                    </tr>
+                    <tr>
+                        <td>5-6</td>
+                        <td>电子信号测量</td>
+                        <td>曾志寒</td>
+                        <td>31#312</td>
+                    </tr>
+                    <tr>
+                        <td>7-8</td>
+                        <td>模拟电子电路</td>
+                        <td>郑小凡</td>
+                        <td>31#421</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4 feedback classList-feedback">
+            <a href="/feedback">问题反馈</a>
+        </div>
+    </section>
+    <script>
+    var days = document.querySelectorAll(".classList-day span");
+    for (var i = 0; i < days.length - 1; i++) {
+        (function(i) {
+            days[i].addEventListener("touchstart", function() {
+                for (var k = 0; k < days.length - 1; k++) {
+                    days[days.length - 1].classList.remove('active' + k);
+                }
+                days[days.length - 1].classList.add('active' + i);
+            })
+        })(i);
+    }
+    </script>
+    <script src="/javascripts/index.js"></script>
+</body>
+
+</html>
