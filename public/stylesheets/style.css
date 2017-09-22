@@ -343,6 +343,21 @@ body {
     transition: left ease-in-out 0.4s;
 }
 
+.classList-table {
+    position: relative;
+}
+
+.classList-table .table {
+    position: absolute;
+    left: 0px;
+    opacity: 0;
+}
+
+.classList-table .table-show {
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
 .classList-section .classList-table {
     font-size: 14px;
     font-family: "微软雅黑", sans-serif;

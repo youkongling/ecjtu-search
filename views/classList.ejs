@@ -30,19 +30,19 @@
                 </div>
                 <div class="col-xs-5 col-xs-offset-1">
                     <span>课程数目</span>
-                    <span class="span-date">4节</span>
+                    <span class="span-date" id="btn_date">4节</span>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 classList-day">
+            <span class="col-xs-3">昨天</span>
             <span class="col-xs-3">今天</span>
             <span class="col-xs-3">明天</span>
-            <span class="col-xs-3">星期三</span>
-            <span class="col-xs-3">星期四</span>
-            <span class="cube active0">小波</span>
+            <span class="col-xs-3">后天</span>
+            <span class="cube active1">小波</span>
         </div>
         <div class="col-xs-12 classList-table">
-            <table class="table">
+            <table class="table" data-length="<%= classInfo.yesterday.length %>">
                 <thead>
                     <th>课节</th>
                     <th>课程</th>
@@ -50,50 +50,113 @@
                     <th>教室</th>
                 </thead>
                 <tbody>
-                    <!-- <tr>
-                        <td>1-2</td>
-                        <td>高等数学(下)</td>
-                        <td>付智慧</td>
-                        <td>31#202</td>
-                    </tr> -->
-                    <% classInfo.tuesday.forEach(function(item){ %>
-                        <% if(item[0]) { %>
-                            <tr>
-                                <td>1-2</td>
-                                <td><%= item[0].class_name %></td>
-                                <td><%= item[0].class_teacher %></td>
-                                <td><%= item[0].class_room %></td>
-                            </tr>
+                    <% for(var i=0 ; i<classInfo.yesterday.length ; i++){ %>
+                        <tr>
+                            <td>
+                                <%= classInfo.yesterday[i].classString %>
+                            </td>
+                            <td>
+                                <%= classInfo.yesterday[i].course %>
+                            </td>
+                            <td>
+                                <%= classInfo.yesterday[i].teacherName %>
+                            </td>
+                            <td>
+                                <%= classInfo.yesterday[i].classRoom %>
+                            </td>
+                        </tr>
                         <% } %>
-                    <% }) %>
-                    <!-- <tr>
-                        <td>3-4</td>
-                        <td>马克思主义原理</td>
-                        <td>张文剑</td>
-                        <td>31#401</td>
-                    </tr>
-                    <tr>
-                        <td>5-6</td>
-                        <td>电子信号测量</td>
-                        <td>曾志寒</td>
-                        <td>31#312</td>
-                    </tr>
-                    <tr>
-                        <td>7-8</td>
-                        <td>模拟电子电路</td>
-                        <td>郑小凡</td>
-                        <td>31#421</td>
-                    </tr> -->
+                </tbody>
+            </table>
+            <table class="table table-show" data-length="<%= classInfo.today.length %>">
+                <thead>
+                    <th>课节</th>
+                    <th>课程</th>
+                    <th>教师</th>
+                    <th>教室</th>
+                </thead>
+                <tbody>
+                    <% for(var i=0 ; i<classInfo.today.length ; i++){ %>
+                        <tr>
+                            <td>
+                                <%= classInfo.today[i].classString %>
+                            </td>
+                            <td>
+                                <%= classInfo.today[i].course %>
+                            </td>
+                            <td>
+                                <%= classInfo.today[i].teacherName %>
+                            </td>
+                            <td>
+                                <%= classInfo.today[i].classRoom %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <table class="table" data-length="<%= classInfo.tomorrow.length %>">
+                <thead>
+                    <th>课节</th>
+                    <th>课程</th>
+                    <th>教师</th>
+                    <th>教室</th>
+                </thead>
+                <tbody>
+                    <% for(var i=0 ; i<classInfo.tomorrow.length ; i++){ %>
+                        <tr>
+                            <td>
+                                <%= classInfo.tomorrow[i].classString %>
+                            </td>
+                            <td>
+                                <%= classInfo.tomorrow[i].course %>
+                            </td>
+                            <td>
+                                <%= classInfo.tomorrow[i].teacherName %>
+                            </td>
+                            <td>
+                                <%= classInfo.tomorrow[i].classRoom %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <table class="table" data-length="<%= classInfo.afterTomorrow.length %>">
+                <thead>
+                    <th>课节</th>
+                    <th>课程</th>
+                    <th>教师</th>
+                    <th>教室</th>
+                </thead>
+                <tbody>
+                    <% for(var i=0 ; i<classInfo.afterTomorrow.length ; i++){ %>
+                        <tr>
+                            <td>
+                                <%= classInfo.afterTomorrow[i].classString %>
+                            </td>
+                            <td>
+                                <%= classInfo.afterTomorrow[i].course %>
+                            </td>
+                            <td>
+                                <%= classInfo.afterTomorrow[i].teacherName %>
+                            </td>
+                            <td>
+                                <%= classInfo.afterTomorrow[i].classRoom %>
+                            </td>
+                        </tr>
+                        <% } %>
                 </tbody>
             </table>
         </div>
-        <!-- <p><%= classInfo %></p> -->
         <div class="col-xs-4 col-xs-offset-4 feedback classList-feedback">
             <a href="/feedback">问题反馈</a>
         </div>
     </section>
     <script>
     var days = document.querySelectorAll(".classList-day span");
+    var tables = document.querySelectorAll(".classList-table .table");
+    var btn_date = document.querySelector("#btn_date");
+    var classNum = tables[1].dataset['length'];
+    btn_date.innerHTML=classNum+"节";
     for (var i = 0; i < days.length - 1; i++) {
         (function(i) {
             days[i].addEventListener("touchstart", function() {
@@ -101,6 +164,13 @@
                     days[days.length - 1].classList.remove('active' + k);
                 }
                 days[days.length - 1].classList.add('active' + i);
+
+                for (var j = 0; j < tables.length; j++) {
+                    tables[j].classList.remove('table-show');
+                }
+                tables[i].classList.add('table-show');
+                classNum = tables[i].dataset['length'];
+                btn_date.innerHTML=classNum+"节";
             })
         })(i);
     }

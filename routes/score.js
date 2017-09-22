@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var config = require('../config/config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,7 +17,7 @@ router.get('/', function(req, res, next) {
         term: _info.term
     }
     request.post({
-        url: 'http://login.liuhongbo.cn/api/v1/queryScore',
+        url: config.localUrl.score,
         formData: formData
     }, function(err, response, body) {
         var _body = JSON.parse(body)
