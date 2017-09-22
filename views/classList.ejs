@@ -50,13 +50,23 @@
                     <th>教室</th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>1-2</td>
                         <td>高等数学(下)</td>
                         <td>付智慧</td>
                         <td>31#202</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <% classInfo.tuesday.forEach(function(item){ %>
+                        <% if(item[0]) { %>
+                            <tr>
+                                <td>1-2</td>
+                                <td><%= item[0].class_name %></td>
+                                <td><%= item[0].class_teacher %></td>
+                                <td><%= item[0].class_room %></td>
+                            </tr>
+                        <% } %>
+                    <% }) %>
+                    <!-- <tr>
                         <td>3-4</td>
                         <td>马克思主义原理</td>
                         <td>张文剑</td>
@@ -73,10 +83,11 @@
                         <td>模拟电子电路</td>
                         <td>郑小凡</td>
                         <td>31#421</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
+        <!-- <p><%= classInfo %></p> -->
         <div class="col-xs-4 col-xs-offset-4 feedback classList-feedback">
             <a href="/feedback">问题反馈</a>
         </div>

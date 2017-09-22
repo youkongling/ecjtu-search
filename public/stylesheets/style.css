@@ -80,7 +80,7 @@ body {
 }
 
 .feedback a {
-    font-size: 16px;
+    font-size: 14px;
     font-family: "微软雅黑";
     font-weight: 600;
     letter-spacing: 2px;
@@ -376,8 +376,10 @@ body {
 }
 
 .score-section .score-feedback {
-    position: absolute;
-    bottom: 20px;
+    position: relative;
+    text-align: center;
+    padding-top: 10px;
+    bottom: 0px;
 }
 
 .score-section .score-back {
@@ -426,16 +428,19 @@ body {
 .score-mask .score-mask-item {
     padding-bottom: 10px;
     font-weight: 300;
+    text-align: center;
+    height: 174px;
 }
 
 .score-section .score-text {
     padding-top: 5px;
+    position: relative;
 }
 
 .score-text .score-text-item {
     position: relative;
-    height: 30px;
-    line-height: 30px;
+    height: 36px;
+    line-height: 36px;
     color: #FFF;
     font-family: "微软雅黑", sans-serif;
     letter-spacing: 2px;

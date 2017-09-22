@@ -14,7 +14,7 @@
             <img class="img-responsive" src="/images/login-1.png" alt="" />
         </div>
         <div class="col-xs-12 login-form">
-            <form action="/choose" method="get">
+            <form action="/" method="post">
                 <div class="form-group col-xs-12">
                     <label for="username">学号</label>
                     <input type="number" id="number" name="number" autofocus autocomplete="on" />
@@ -33,10 +33,12 @@
         </div>
     </section>
     <script>
-    var login_btn = document.querySelector('#login_btn');
-    login_btn.addEventListener("touchstart", function() {
-        window.location.pathname = "/choose";
-    })
+    var reg = 'info=.*?number.{9}(.*?).{9}password.{9}(.*?)%.*?'
+    var info = document.cookie.match(reg);
+    if (info) {
+        document.querySelector('#number').value = info[1];
+        document.querySelector('#password').value = info[2];
+    }
     </script>
     <script src="/javascripts/index.js"></script>
 </body>
