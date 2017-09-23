@@ -36,10 +36,22 @@ router.get('/', function(req, res, next) {
         }
     }
     var classList = {
-        yesterday: [],
-        today: [],
-        tomorrow: [],
-        afterTomorrow: []
+        yesterday: {
+            data: [],
+            date: _info.yesterday
+        },
+        today: {
+            data: [],
+            date: _info.today
+        },
+        tomorrow: {
+            data: [],
+            date: _info.tomorrow
+        },
+        afterTomorrow: {
+            data: [],
+            date: _info.afterTomorrow
+        }
     }
     // console.log(0);
     request.post({
@@ -54,11 +66,11 @@ router.get('/', function(req, res, next) {
             var classItem = _body.data.today_class_list;
             // console.log(classItem)
             for (var i = 0; i < classItem.length; i++) {
-                classList.yesterday.push(classItem[i]);
+                classList.yesterday.data.push(classItem[i]);
             }
         }
         // console.log(1);
-        (function(){
+        (function() {
             request.post({
                 url: config.localUrl.class,
                 formData: formData.today
@@ -71,11 +83,11 @@ router.get('/', function(req, res, next) {
                     var classItem = _body.data.today_class_list;
                     // console.log(classItem)
                     for (var i = 0; i < classItem.length; i++) {
-                        classList.today.push(classItem[i]);
+                        classList.today.data.push(classItem[i]);
                     }
                 }
                 // console.log(2);
-                (function(){
+                (function() {
                     request.post({
                         url: config.localUrl.class,
                         formData: formData.tomorrow
@@ -88,11 +100,11 @@ router.get('/', function(req, res, next) {
                             var classItem = _body.data.today_class_list;
                             // console.log(classItem)
                             for (var i = 0; i < classItem.length; i++) {
-                                classList.tomorrow.push(classItem[i]);
+                                classList.tomorrow.data.push(classItem[i]);
                             }
                         }
                         // console.log(3);
-                        (function(){
+                        (function() {
                             request.post({
                                 url: config.localUrl.class,
                                 formData: formData.afterTomorrow
@@ -105,7 +117,7 @@ router.get('/', function(req, res, next) {
                                     var classItem = _body.data.today_class_list;
                                     // console.log(classItem)
                                     for (var i = 0; i < classItem.length; i++) {
-                                        classList.afterTomorrow.push(classItem[i]);
+                                        classList.afterTomorrow.data.push(classItem[i]);
                                     }
                                 }
                                 // console.log(4);
@@ -115,10 +127,10 @@ router.get('/', function(req, res, next) {
                         })();
                     })
                 })();
-                
+
             })
         })();
-        
+
     })
 
     // res.render('classList', { classInfo: classList });

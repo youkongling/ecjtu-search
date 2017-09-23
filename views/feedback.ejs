@@ -14,7 +14,7 @@
             <img class="img-responsive" src="/images/feedback-1.png" alt="" />
         </div>
         <div class="col-xs-10 col-xs-offset-1 feedback-form">
-            <form action="">
+            <form action="/feedback" method="post" id="feedForm">
                 <p class="col-xs-12">如果文字无法描述可联系<strong>QQ:183313398</strong></p>
                 <textarea class="col-xs-12" name="feedback" rows="5" cols="" placeholder="你好！有问题可以写在这里告诉小新哦！"></textarea>
             </form>
@@ -24,7 +24,7 @@
                 <input type="button" id="btn_back" value="Back" />
             </div>
             <div class="col-xs-6">
-                <input class="btn-yellow" type="button" id="btn_ok" value="OK" />
+                <input class="btn-yellow" type="submit" value="OK" form="feedForm" />
             </div>
         </div>
         <div class="col-xs-4 col-xs-offset-4 feedback feedback-feedback">
@@ -35,10 +35,6 @@
     var btnBack = document.querySelector("#btn_back");
     btnBack.addEventListener("touchstart", function() {
         window.history.go(-1);
-    })
-    var btnOk = document.querySelector("#btn_ok");
-    btnOk.addEventListener("touchstart", function() {
-        window.location.pathname = "/choose";
     })
     </script>
     <script src="/javascripts/index.js"></script>

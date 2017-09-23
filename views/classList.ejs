@@ -16,7 +16,7 @@
             </a>
         </div>
         <div class="col-xs-12 classList-info">
-            <div class="col-xs-7 classList-user">
+            <div class="col-xs-7 classList-user" id="classUser">
                 <h2>刘小波</h2>
                 <span>2015211001000622</span>
             </div>
@@ -26,11 +26,11 @@
             <div class="col-xs-12 classList-date">
                 <div class="col-xs-6">
                     <span>日期</span>
-                    <span class="span-date">2017/09/13</span>
+                    <span class="span-date" id="btn_date">2017/09/13</span>
                 </div>
                 <div class="col-xs-5 col-xs-offset-1">
                     <span>课程数目</span>
-                    <span class="span-date" id="btn_date">4节</span>
+                    <span class="span-date" id="btn_num">4节</span>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <span class="cube active1">小波</span>
         </div>
         <div class="col-xs-12 classList-table">
-            <table class="table" data-length="<%= classInfo.yesterday.length %>">
+            <table class="table" data-length="<%= classInfo.yesterday.data.length %>" data-date="<%= classInfo.yesterday.date %>">
                 <thead>
                     <th>课节</th>
                     <th>课程</th>
@@ -50,25 +50,25 @@
                     <th>教室</th>
                 </thead>
                 <tbody>
-                    <% for(var i=0 ; i<classInfo.yesterday.length ; i++){ %>
+                    <% for(var i=0 ; i<classInfo.yesterday.data.length ; i++){ %>
                         <tr>
                             <td>
-                                <%= classInfo.yesterday[i].classString %>
+                                <%= classInfo.yesterday.data[i].classString %>
                             </td>
                             <td>
-                                <%= classInfo.yesterday[i].course %>
+                                <%= classInfo.yesterday.data[i].course %>
                             </td>
                             <td>
-                                <%= classInfo.yesterday[i].teacherName %>
+                                <%= classInfo.yesterday.data[i].teacherName %>
                             </td>
                             <td>
-                                <%= classInfo.yesterday[i].classRoom %>
+                                <%= classInfo.yesterday.data[i].classRoom %>
                             </td>
                         </tr>
                         <% } %>
                 </tbody>
             </table>
-            <table class="table table-show" data-length="<%= classInfo.today.length %>">
+            <table class="table table-show" data-length="<%= classInfo.today.data.length %>" data-date="<%= classInfo.today.date %>">
                 <thead>
                     <th>课节</th>
                     <th>课程</th>
@@ -76,25 +76,25 @@
                     <th>教室</th>
                 </thead>
                 <tbody>
-                    <% for(var i=0 ; i<classInfo.today.length ; i++){ %>
+                    <% for(var i=0 ; i<classInfo.today.data.length ; i++){ %>
                         <tr>
                             <td>
-                                <%= classInfo.today[i].classString %>
+                                <%= classInfo.today.data[i].classString %>
                             </td>
                             <td>
-                                <%= classInfo.today[i].course %>
+                                <%= classInfo.today.data[i].course %>
                             </td>
                             <td>
-                                <%= classInfo.today[i].teacherName %>
+                                <%= classInfo.today.data[i].teacherName %>
                             </td>
                             <td>
-                                <%= classInfo.today[i].classRoom %>
+                                <%= classInfo.today.data[i].classRoom %>
                             </td>
                         </tr>
                         <% } %>
                 </tbody>
             </table>
-            <table class="table" data-length="<%= classInfo.tomorrow.length %>">
+            <table class="table" data-length="<%= classInfo.tomorrow.data.length %>" data-date="<%= classInfo.tomorrow.date %>">
                 <thead>
                     <th>课节</th>
                     <th>课程</th>
@@ -102,25 +102,25 @@
                     <th>教室</th>
                 </thead>
                 <tbody>
-                    <% for(var i=0 ; i<classInfo.tomorrow.length ; i++){ %>
+                    <% for(var i=0 ; i<classInfo.tomorrow.data.length ; i++){ %>
                         <tr>
                             <td>
-                                <%= classInfo.tomorrow[i].classString %>
+                                <%= classInfo.tomorrow.data[i].classString %>
                             </td>
                             <td>
-                                <%= classInfo.tomorrow[i].course %>
+                                <%= classInfo.tomorrow.data[i].course %>
                             </td>
                             <td>
-                                <%= classInfo.tomorrow[i].teacherName %>
+                                <%= classInfo.tomorrow.data[i].teacherName %>
                             </td>
                             <td>
-                                <%= classInfo.tomorrow[i].classRoom %>
+                                <%= classInfo.tomorrow.data[i].classRoom %>
                             </td>
                         </tr>
                         <% } %>
                 </tbody>
             </table>
-            <table class="table" data-length="<%= classInfo.afterTomorrow.length %>">
+            <table class="table" data-length="<%= classInfo.afterTomorrow.data.length %>" data-date="<%= classInfo.afterTomorrow.date %>">
                 <thead>
                     <th>课节</th>
                     <th>课程</th>
@@ -128,19 +128,19 @@
                     <th>教室</th>
                 </thead>
                 <tbody>
-                    <% for(var i=0 ; i<classInfo.afterTomorrow.length ; i++){ %>
+                    <% for(var i=0 ; i<classInfo.afterTomorrow.data.length ; i++){ %>
                         <tr>
                             <td>
-                                <%= classInfo.afterTomorrow[i].classString %>
+                                <%= classInfo.afterTomorrow.data[i].classString %>
                             </td>
                             <td>
-                                <%= classInfo.afterTomorrow[i].course %>
+                                <%= classInfo.afterTomorrow.data[i].course %>
                             </td>
                             <td>
-                                <%= classInfo.afterTomorrow[i].teacherName %>
+                                <%= classInfo.afterTomorrow.data[i].teacherName %>
                             </td>
                             <td>
-                                <%= classInfo.afterTomorrow[i].classRoom %>
+                                <%= classInfo.afterTomorrow.data[i].classRoom %>
                             </td>
                         </tr>
                         <% } %>
@@ -155,8 +155,11 @@
     var days = document.querySelectorAll(".classList-day span");
     var tables = document.querySelectorAll(".classList-table .table");
     var btn_date = document.querySelector("#btn_date");
+    var btn_num = document.querySelector("#btn_num");
     var classNum = tables[1].dataset['length'];
-    btn_date.innerHTML=classNum+"节";
+    var classDate = tables[1].dataset['date'];
+    btn_num.innerHTML = classNum + "节";
+    btn_date.innerHTML = classDate;
     for (var i = 0; i < days.length - 1; i++) {
         (function(i) {
             days[i].addEventListener("touchstart", function() {
@@ -170,10 +173,18 @@
                 }
                 tables[i].classList.add('table-show');
                 classNum = tables[i].dataset['length'];
-                btn_date.innerHTML=classNum+"节";
+                btn_date.innerHTML = classNum + "节";
+                classDate = tables[i].dataset['date'];
+                btn_date.innerHTML = classDate;
             })
         })(i);
     }
+    var infoStr = window.localStorage.getItem("userInfo");
+    var userInfo = JSON.parse(infoStr);
+    var userName = document.querySelector('#classUser > h2');
+    var userId = document.querySelector('#classUser > span');
+    userName.innerHTML = userInfo.name;
+    userId.innerHTML = userInfo.id;
     </script>
     <script src="/javascripts/index.js"></script>
 </body>

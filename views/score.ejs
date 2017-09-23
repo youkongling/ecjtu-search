@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="col-xs-12 score-info">
-            <div class="col-xs-7 score-user">
+            <div class="col-xs-7 score-user" id="scoreUser">
                 <h2>刘小波</h2>
                 <span>2015211001000622</span>
             </div>
@@ -68,11 +68,13 @@
             var item=$('#bar-'+(i+1));
             item.jqbar({ label: item.data('label'), value: item.data('value'), barColor: '#37CE22', orientation: 'v' });
         }
-        // $('#bar-1').jqbar({ label: '高等数学', value: 92, barColor: '#37CE22', orientation: 'v' });
-        // $('#bar-2').jqbar({ label: '模拟电子电路', value: 53, barColor: '#37CE22', orientation: 'v' });
-        // $('#bar-3').jqbar({ label: '马克思主义原理', value: 72, barColor: '#37CE22', orientation: 'v' });
-        // $('#bar-4').jqbar({ label: '大学英语(二)', value: 76, barColor: '#37CE22', orientation: 'v' });
     })
+    var infoStr = window.localStorage.getItem("userInfo");
+    var userInfo = JSON.parse(infoStr);
+    var userName = document.querySelector('#scoreUser > h2');
+    var userId = document.querySelector('#scoreUser > span');
+    userName.innerHTML = userInfo.name;
+    userId.innerHTML = userInfo.id;
     </script>
 </body>
 

@@ -14,7 +14,7 @@
             <img class="img-responsive" src="/images/choose-1.png" alt="" />
         </div>
         <div class="col-xs-12 choose-text">
-            <h2><%= info %></h2>
+            <h2 id="user" data-userName="<%= info.user.name %>" data-userId="<%= info.user.student_id %>"><%= info.msg %></h2>
             <span>你可以查询你的成绩或者你的课程如果页面</span>
             <span>长时间刷新不出来可以点击底部</span>
             <span><strong>问题反馈</strong>告诉我们</span>
@@ -34,12 +34,18 @@
     <script>
     var classList = document.querySelector("#btn_classList");
     classList.addEventListener("touchstart", function() {
-        window.location.pathname="/classList";
+        window.location.pathname = "/classList";
     })
     var score = document.querySelector("#btn_score");
     score.addEventListener("touchstart", function() {
-        window.location.pathname="/score";
+        window.location.pathname = "/score";
     })
+    var user = document.querySelector("#user");
+    var userInfo = {
+        name: user.dataset.username,
+        id: user.dataset.userid
+    }
+    window.localStorage.setItem("userInfo", JSON.stringify(userInfo));
     </script>
     <script src="/javascripts/index.js"></script>
 </body>
