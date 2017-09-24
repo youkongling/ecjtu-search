@@ -39,12 +39,12 @@
         <div class="col-xs-12 score-text">
             <% for(var i = 0 ; i < score.scoreText.length ; i++){ %>
                 <% if(score.scoreText[i].score == '优秀' || score.scoreText[i].score == '良好'){ %>
-                    <div class="col-xs-10 col-xs-offset-1 score-text-item">
+                    <div class="col-xs-12 score-text-item">
                         <span data-label="<%= score.scoreText[i].objectName %>"><%= score.scoreText[i].objectName %></span>
                         <span data-value="<%= score.scoreText[i].score %>"><%= score.scoreText[i].score %></span>
                     </div>    
                 <% }else{ %>
-                    <div class="col-xs-10 col-xs-offset-1 score-text-item score-text-bad">
+                    <div class="col-xs-12 score-text-item score-text-bad">
                         <span data-label="<%= score.scoreText[i].objectName %>"><%= score.scoreText[i].objectName %></span>
                         <span data-value="<%= score.scoreText[i].score %>"><%= score.scoreText[i].score %></span>
                     </div>
